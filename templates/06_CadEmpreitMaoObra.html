@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block titulo %} Painel {% endblock %}
+
+
+
+{% block conteudo %}
+
+      <div class="container-fluid">
+
+            {% csrf_token %}
+            <!-- abas -->
+            <div class="card mb-3">
+
+              <div class="card-header" style="text-align: center">
+                <STRONG>MÃO DE OBRA DE EMPREITEIRAS</STRONG>
+              </div>
+
+
+
+                <div class="box01">
+                    <div class="box03_texto">
+                          <div STYLE="text-align: center"></div><hr>
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Preencha</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                                <form method="post">
+                                    {% csrf_token %}
+                                  <div class="modal-body">
+
+                                      <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label" >Descrição:</label>
+                                        <input name="empMaoObraDesc" type="text" class="form-control" id="recipient-name" onkeyup="this.value=this.value.toUpperCase();" value="NÃO ESPECIFICADO">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Quantidade:</label>
+                                        <input name="empMaoObraQtd" type="number" class="form-control" id="recipient-name" value="0">
+                                        <input name="diario" type="hidden" value="{{ diario.id }}">
+                                      </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                  </div>
+                                </form>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+            <div class="table-responsive" >
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr style="text-align: center">
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                    {% for i in empreitMaoObra %}
+                      <tr style="text-align: center">
+                        <td><a>{{ i.empMaoObraDesc }}</a></td>
+                        <td>{{ i.empMaoObraQtd }}</td>
+                        <td><a href="#" class="btn btn-primary" role="button" aria-pressed="true">Editar</a></td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+              </table><br>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Cadastrar</button>
+              <a href="{% url 'cadEmpreitEquipamento' diario.id  qtdMaoObraDir qtdMaoObraInd qtdEquipamento qtdEmpMaoObra 0  %}" class="btn btn-success" role="button" aria-pressed="true">Prosseguir</a>
+            </div>
+          </div>
+      </div>
+{% endblock %}
