@@ -1,0 +1,147 @@
+{% extends 'Diario/base.html' %}
+{% load static %}
+
+{% block titulo %} Painel {% endblock %}
+
+
+{% block conteudo %}
+
+      <div class="container-fluid">
+            <!-- abas -->
+            <div class="card mb-3">
+
+                  <div class="card-header" style="text-align: center">
+                    <STRONG>SELECIONAR CLIENTE</STRONG>
+                  </div><br>
+
+                <div class="box02">
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Preencha</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            <form method="post">
+                            {% csrf_token %}
+                              <div class="modal-body">
+
+                                  <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="empClienteRazao" class="col-form-label" >Razão Social:</label>
+                                        <input name="empClienteRazao" type="text" class="form-control" id="empClienteRazao" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: Contruções LTDA">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="empClienteCNPJ" class="col-form-label" >CNPJ:</label>
+                                        <input name="empClienteCNPJ" type="text" class="form-control" id="empClienteCNPJ" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: 00.000.000/0000-00">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label for="empClienteRespon" class="col-form-label" >Responsavel:</label>
+                                        <input name="empClienteRespon" type="text" class="form-control" id="empClienteRespon" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: Francisco">
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                        <label for="empClienteContato" class="col-form-label" >Contato:</label>
+                                        <input name="empClienteContato" type="text" class="form-control" id="empClienteContato" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: (00) 0 0000-0000">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                      <div class="form-group col-md-8">
+                                        <label for="empClienteEmail" class="col-form-label" >Email:</label>
+                                        <input name="empClienteEmail" type="email" class="form-control" id="empClienteEmail" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: maria@gmail.com">
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="endCEP" class="col-form-label" >CEP:</label>
+                                        <input name="endCEP" type="text" class="form-control" id="endCEP" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: 00 000 000">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                      <div class="form-group col-md-10">
+                                        <label for="endRua" class="col-form-label" >Rua:</label>
+                                        <input name="endRua" type="text" class="form-control" id="endRua" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: São José">
+                                      </div>
+                                      <div class="form-group col-md-2">
+                                        <label for="endNum" class="col-form-label" >Número:</label>
+                                        <input name="endNum" type="number" class="form-control" id="endNum" onkeyup="this.value=this.value.toUpperCase();">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                      <div class="form-group col-md-10">
+                                        <label for="endCidade" class="col-form-label" >Cidade:</label>
+                                        <input name="endCidade" type="text" class="form-control" id="endCidade" onkeyup="this.value=this.value.toUpperCase();" placeholder="Ex: Rio Branco">
+                                      </div>
+                                      <div class="form-group col-md-2">
+                                          <label class="col-form-label" for="endEstado">Estado:</label>
+                                          <select name="endEstado" id="endEstado"  class="form-control">
+                                            <option selected>...</option>
+                                            <option>AC</option>
+                                            <option>AL</option>
+                                            <option>AL</option>
+                                            <option>AM</option>
+                                            <option>BA</option>
+                                            <option>CE</option>
+                                            <option>DF</option>
+                                            <option>ES</option>
+                                            <option>GO</option>
+                                            <option>MA</option>
+                                            <option>MT</option>
+                                            <option>MS</option>
+                                            <option>MG</option>
+                                            <option>PA</option>
+                                            <option>PB</option>
+                                            <option>PR</option>
+                                            <option>PE</option>
+                                            <option>PI</option>
+                                            <option>RJ</option>
+                                            <option>RN</option>
+                                            <option>RS</option>
+                                            <option>RO</option>
+                                            <option></option>
+                                            <option></option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                              </div>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+
+          <div class="card-body"><hr>
+            <table class="table">
+
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Descrição</th>
+                          <th scope="col">Ação</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for i in clientes %}
+                            <tr>
+                              <td>{{ i.empClienteRazao }}</td>
+                              <td><a href="{% url 'cadObra' i.id %}" class="btn btn-primary" role="button" aria-pressed="true">Selecionar</a></td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+
+                  </table><hr>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Cadastrar</button>
+          </div>
+      </div>
+{% endblock %}

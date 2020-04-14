@@ -2,7 +2,11 @@ from django.urls import path
 from Diario.views import *
 
 urlpatterns = [
-    path('', index, name="index"),
+    path('index', index, name="index"),
+    path('', Logar, name="logar"),
+    path('deslogar', deslogar, name="deslogar"),
+    path('cadUser', CadUser, name="cadUser"),
+    path('recupSenha', RecupSenha, name="recupSenha"),
 
     path('cadObra/<idCliente>', cadObra, name="cadObra"),
     path('selecCliente', SelecCliente, name="selecCliente"),

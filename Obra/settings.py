@@ -124,3 +124,6 @@ STATIC_URL = '/static/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+#mudando a tabela de autenticação padrão
+AUTH_USER_MODEL = 'Diario.EmpresaUser'

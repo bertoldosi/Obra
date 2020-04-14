@@ -1,4 +1,6 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
+from .manager import UsuarioManager
 
 
 class Obras(models.Model):
@@ -11,19 +13,32 @@ class Obras(models.Model):
         return self.obraNome
 
 
-class EmpresaUser(models.Model):
+class EmpresaUser(AbstractBaseUser):
+    objects = UsuarioManager()
+
     empreUserRazao = models.CharField('Nome da razão social', max_length=50)
-    empreUserLogo = models.ImageField('Logo')
     empreUserCNPJ = models.CharField('CNPJ', max_length=20)
     empreUserRespon = models.CharField('Responsável', max_length=50)
     empreUserContato = models.CharField('Contato', max_length=12)
-    empreUserEmail = models.EmailField('Email')
-
+    empreUserEmail = models.EmailField('Email', unique=True)
     endRua = models.CharField('Rua', max_length=50)
     endNum = models.IntegerField('Número')
     endCEP = models.CharField('CEP', max_length=50)
     endCidade = models.CharField('Cidade', max_length=50)
     endEstado = models.CharField('Estado', max_length=50)
+
+    USERNAME_FIELD = 'empreUserEmail'
+
+    REQUIRED_FIELDS = ['empreUserRazao',
+                       'empreUserCNPJ',
+                       'empreUserRespon',
+                       'empreUserContato',
+                       'endRua',
+                       'endNum',
+                       'endCEP',
+                       'endCidade',
+                       'endEstado'
+                       ]
 
     def __str__(self):
         return self.empreUserRazao

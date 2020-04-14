@@ -1,18 +1,82 @@
 from datetime import date
-
+from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-
 from Diario.forms import *
 from Diario.models import *
+from Diario.entidades.usuario import Usuario
+from Diario.services import usuario_service
 
 
 def index(request):
     obra = Obras.objects.all()
-    return render(request, '00_index.html', locals())
+    return render(request, 'Diario/00_index.html', locals())
+
+def deslogar(request):
+    logout(request)
+    return redirect('logar')
+
+def Logar(request):
+
+    if request.method == "POST":
+        form_login = LoginForm(data=request.POST)
+        username = request.POST["username"]
+        password = request.POST["password"]
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect('index')
+        else:
+            form_login = AuthenticationForm()
+    else:
+        form_login = AuthenticationForm()
+    return render(request, 'Diario/0_logar.html', locals())
 
 
+
+
+
+def CadUser(request):
+
+    if request.method == 'POST':
+        formuser = UsuarioForm(data=request.POST)
+
+        if formuser.is_valid():
+            empreUserRazao = formuser.cleaned_data['empreUserRazao']
+            empreUserCNPJ = formuser.cleaned_data['empreUserCNPJ']
+            empreUserRespon = formuser.cleaned_data['empreUserRespon']
+            empreUserContato = formuser.cleaned_data['empreUserContato']
+            empreUserEmail = formuser.cleaned_data['empreUserEmail']
+            endRua = formuser.cleaned_data['endRua']
+            endNum = formuser.cleaned_data['endNum']
+            endCEP = formuser.cleaned_data['endCEP']
+            endCidade = formuser.cleaned_data['endCidade']
+            endEstado = formuser.cleaned_data['endEstado']
+            password = formuser.cleaned_data['password1']
+
+            usuario_novo = Usuario(empreUserRazao=empreUserRazao,
+                                     empreUserCNPJ=empreUserCNPJ,
+                                     empreUserRespon=empreUserRespon,
+                                     empreUserContato=empreUserContato,
+                                     empreUserEmail=empreUserEmail,
+                                     endRua=endRua,
+                                     endNum=endNum,
+                                     endCEP=endCEP,
+                                     endCidade=endCidade,
+                                     endEstado=endEstado,
+                                     password=password)
+
+            usuario_service.cadastrar_usuario(usuario_novo)
+            return redirect('logar')
+        else:
+            formuser = UsuarioForm()
+    return render(request, 'Diario/0_cadUser.html', locals())
+
+def RecupSenha(request):
+    return render(request, 'Diario/0_RecupSenha.html', locals())
+
+#------------DIARIO OBRA------------------------------------------------------------------------------------------------
 def cadObra(request, idCliente):
     usuario = EmpresaUser.objects.get(id=1)
     clientes = EmpresaCliente.objects.all()
@@ -29,12 +93,12 @@ def cadObra(request, idCliente):
     else:
         HttpResponse('Post incorreto!')
 
-    return render(request, '01_cadObra.html', locals())
+    return render(request, 'Diario/01_cadObra.html', locals())
 
 def SelecCliente(request):
     clientes = EmpresaCliente.objects.all()
 
-    return render(request, '14_SelecCliente.html', locals())
+    return render(request, 'Diario/14_SelecCliente.html', locals())
 
 def cadDiario(request, idObra):
     obra = Obras.objects.get(id=idObra)
@@ -64,7 +128,7 @@ def cadDiario(request, idObra):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '02_CadDiario.html', locals())
+    return render(request, 'Diario/02_CadDiario.html', locals())
 
 
 
@@ -90,7 +154,7 @@ def cadMaoObraDir(request, idDiario, qtdMaoObraDir):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '03_CadMaoObraDir.html', locals())
+    return render(request, 'Diario/03_CadMaoObraDir.html', locals())
 
 
 
@@ -115,7 +179,7 @@ def cadMaoObraInd(request, idDiario, qtdMaoObraDir, qtdMaoObraInd):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '04_CadMaoObraInd.html', locals())
+    return render(request, 'Diario/04_CadMaoObraInd.html', locals())
 
 
 def cadEquipamento(request, idDiario, qtdMaoObraDir, qtdMaoObraInd, qtdEquipamento):
@@ -141,14 +205,14 @@ def cadEquipamento(request, idDiario, qtdMaoObraDir, qtdMaoObraInd, qtdEquipamen
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '05_CadEquipamento.html', locals())
+    return render(request, 'Diario/05_CadEquipamento.html', locals())
 
 
 def cadEmpreitMaoObra(request, idDiario, qtdMaoObraDir, qtdMaoObraInd, qtdEquipamento, qtdEmpMaoObra):
 
     empreitMaoObra = EmpreiteirasMaoObras.objects.filter(diario=idDiario)
 
-    ##############################################
+#------------
     listaValue = []
     for i in empreitMaoObra:  # somando a qtd de mão de obra
         listaValue.append(int(i.empMaoObraQtd))
@@ -166,7 +230,7 @@ def cadEmpreitMaoObra(request, idDiario, qtdMaoObraDir, qtdMaoObraInd, qtdEquipa
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '06_CadEmpreitMaoObra.html', locals())
+    return render(request, 'Diario/06_CadEmpreitMaoObra.html', locals())
 
 
 def cadEmpreitEquipamento(request, idDiario ,qtdMaoObraDir, qtdMaoObraInd, qtdEquipamento, qtdEmpMaoObra, qtdEmpEquipamento):
@@ -202,7 +266,7 @@ def cadEmpreitEquipamento(request, idDiario ,qtdMaoObraDir, qtdMaoObraInd, qtdEq
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '07_CadEmpreitEquipamento.html', locals())
+    return render(request, 'Diario/07_CadEmpreitEquipamento.html', locals())
 
 
 def cadClima(request, idDiario, qtdTotalMaoObra, qtdTotalEquipamento):
@@ -222,7 +286,7 @@ def cadClima(request, idDiario, qtdTotalMaoObra, qtdTotalEquipamento):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '08_CadClima.html', locals())
+    return render(request, 'Diario/08_CadClima.html', locals())
 
 
 def cadObservacao(request, idDiario, qtdTotalMaoObra, qtdTotalEquipamento):
@@ -242,7 +306,7 @@ def cadObservacao(request, idDiario, qtdTotalMaoObra, qtdTotalEquipamento):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '09_CadObservacao.html', locals())
+    return render(request, 'Diario/09_CadObservacao.html', locals())
 
 
 def MostraTotalServ(request, idDiario, qtdTotalMaoObra, qtdTotalEquipamento):
@@ -262,7 +326,7 @@ def MostraTotalServ(request, idDiario, qtdTotalMaoObra, qtdTotalEquipamento):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '10_MostraTotalServ.html', locals())
+    return render(request, 'Diario/10_MostraTotalServ.html', locals())
 
 
 #############################################################################################
@@ -281,7 +345,7 @@ def Add_MaoObraDir(request, idDiario):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '03_CadMaoObraDir.html', locals())
+    return render(request, 'Diario/03_CadMaoObraDir.html', locals())
 
 #---------------------------CLIENTE-----------------------------------------------------------------------------
 def CadCliente(request):
@@ -297,11 +361,11 @@ def CadCliente(request):
             HttpResponse('Formulario invalido!')
     else:
         HttpResponse('Post incorreto!')
-    return render(request, '11_CadCliente.html', locals())
+    return render(request, 'Diario/11_CadCliente.html', locals())
 
 def MostrarCliente(request, idCliente):
     cliente = EmpresaCliente.objects.get(id=idCliente)
-    return render(request, '12_MostrarCliente.html', locals())
+    return render(request, 'Diario/12_MostrarCliente.html', locals())
 
 def EditarCliente(request, idCliente):
     cliente = EmpresaCliente.objects.get(id=idCliente)
@@ -310,4 +374,4 @@ def EditarCliente(request, idCliente):
     if form.is_valid():
         form.save()
         return redirect(reverse_lazy('cadCliente'))
-    return render(request, '13_EditarCliente.html', locals())
+    return render(request, 'Diario/13_EditarCliente.html', locals())
