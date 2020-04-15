@@ -57,6 +57,9 @@ class EmpresaCliente(models.Model):
     endCidade = models.CharField('Cidade', max_length=50)
     endEstado = models.CharField('Estado', max_length=50)
 
+    engenheiro = models.ForeignKey('EmpresaUser', on_delete=models.CASCADE)
+
+
     def __str__(self):
         return self.empClienteRazao
 

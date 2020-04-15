@@ -10,6 +10,7 @@ from Diario.services import usuario_service
 
 
 def index(request):
+    usuario = request.user
     obra = Obras.objects.all()
     return render(request, 'Diario/00_index.html', locals())
 
@@ -81,7 +82,7 @@ def cadObra(request, idCliente):
     usuario = EmpresaUser.objects.get(id=1)
     clientes = EmpresaCliente.objects.all()
     cliente = EmpresaCliente.objects.get(id=idCliente)
-
+    usuario = request.user
     formObra = FormObras()
     if request.method == 'POST':
         formObra = FormObras(request.POST)
@@ -349,8 +350,8 @@ def Add_MaoObraDir(request, idDiario):
 
 #---------------------------CLIENTE-----------------------------------------------------------------------------
 def CadCliente(request):
-    clientes = EmpresaCliente.objects.all().order_by('empClienteRazao')
-
+    engenheiro = request.user
+    clientes = EmpresaCliente.objects.filter(engenheiro=engenheiro)
     formCliente = FormEmpresaCliente()
     if request.method == 'POST':
         formCliente = FormEmpresaCliente(request.POST)
