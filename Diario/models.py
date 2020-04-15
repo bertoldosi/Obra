@@ -1,4 +1,4 @@
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from .manager import UsuarioManager
 
@@ -13,7 +13,7 @@ class Obras(models.Model):
         return self.obraNome
 
 
-class EmpresaUser(AbstractBaseUser):
+class EmpresaUser(AbstractBaseUser, PermissionsMixin):
     objects = UsuarioManager()
 
     empreUserRazao = models.CharField('Nome da razão social', max_length=50)

@@ -2,7 +2,7 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UsuarioManager(BaseUserManager):
-    def create_user(self, empreUserRazao,
+    def create_superuser(self, empreUserRazao,
                           empreUserEmail,
                           password,
                           empreUserCNPJ,
@@ -29,6 +29,7 @@ class UsuarioManager(BaseUserManager):
             endCidade=endCidade,
             endEstado=endEstado,
         )
+        usuario.is_superuser = True
         usuario.set_password(password)
         usuario.save()
         return usuario

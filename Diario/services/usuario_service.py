@@ -2,7 +2,7 @@ from ..models import EmpresaUser
 
 #meto create_user é especil do modulo AbstractBaseUser da model.
 def cadastrar_usuario(usuario):
-    usuario = EmpresaUser.objects.create_user(
+    usuario = EmpresaUser.objects.create_superuser(
                                          empreUserRazao=usuario.empreUserRazao,
                                          empreUserCNPJ=usuario.empreUserCNPJ,
                                          empreUserRespon=usuario.empreUserRespon,

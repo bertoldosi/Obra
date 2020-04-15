@@ -11,6 +11,7 @@ from Diario.services import usuario_service
 
 def index(request):
     usuario = request.user
+    admin = usuario.is_superuser
     obra = Obras.objects.all()
     return render(request, 'Diario/00_index.html', locals())
 
