@@ -1,0 +1,78 @@
+{% extends 'Diario/base.html' %}
+{% load static %}
+
+{% block titulo %} Painel {% endblock %}
+
+
+{% block conteudo %}
+
+      <div class="container-fluid">
+            <!-- abas -->
+            <div class="card mb-3">
+
+                  <div class="card-header" style="text-align: center">
+                    <STRONG>INFORMAÇÕES DO CLIENTE</STRONG>
+                  </div><br>
+
+                  <div class="modal-body">
+
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="empClienteRazao" class="col-form-label" >Razão Social:</label>
+                            <fieldset type="text" class="text-secondary" id="empClienteRazao" >{{ cliente.empClienteRazao }}</fieldset>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="empClienteCNPJ" class="col-form-label" >CNPJ:</label>
+                            <fieldset name="empClienteCNPJ" type="text" class="text-secondary" id="empClienteCNPJ" >{{ cliente.empClienteCNPJ }}</fieldset>
+                          </div>
+                      </div><hr>
+
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="empClienteRespon" class="col-form-label" >Responsavel:</label>
+                            <fieldset name="empClienteRespon" type="text" class="text-secondary" id="empClienteRespon" >{{ cliente.empClienteRespon }}</fieldset>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="empClienteContato" class="col-form-label" >Contato:</label>
+                            <fieldset name="empClienteContato" type="text" class="text-secondary" id="empClienteContato" >{{ cliente.empClienteContato }}</fieldset>
+                          </div>
+                      </div><hr>
+
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="empClienteEmail" class="col-form-label" >Email:</label>
+                            <fieldset name="empClienteEmail" type="email" class="text-secondary" id="empClienteEmail" >{{ cliente.empClienteEmail }}</fieldset>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="endCEP" class="col-form-label" >CEP:</label>
+                            <fieldset name="endCEP" type="text" class="text-secondary" id="endCEP" >{{ cliente.endCEP }}</fieldset>
+                          </div>
+                      </div><hr>
+
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="endRua" class="col-form-label" >Rua:</label>
+                            <fieldset name="endRua" type="text" class="text-secondary" id="endRua" >{{ cliente.endRua }}</fieldset>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="endNum" class="col-form-label" >Número:</label>
+                            <fieldset name="endNum" type="number" class="text-secondary" id="endNum" >{{ cliente.endNum }}</fieldset>
+                          </div>
+                      </div><hr>
+
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="endCidade" class="col-form-label" >Cidade:</label>
+                            <fieldset name="endCidade" type="text" class="text-secondary" id="endCidade" >{{ cliente.endCidade }}</fieldset>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="endCidade" class="col-form-label" >Estado:</label>
+                            <fieldset name="endCidade" type="text" class="text-secondary" id="endCidade" >{{ cliente.endEstado }}</fieldset>
+                          </div>
+                      </div><br><br>
+                      <a href="{% url 'editarCliente' cliente.id %}" class="btn btn-primary" role="button" aria-pressed="true">Editar</a>
+                      <a href="{% url 'cadCliente' %}" class="btn btn-danger" role="button" aria-pressed="true">Voltar</a>
+                  </div>
+            </div>
+      </div>
+{% endblock %}

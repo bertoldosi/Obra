@@ -1,0 +1,1 @@
+web: gunicorn Obra.wsgi

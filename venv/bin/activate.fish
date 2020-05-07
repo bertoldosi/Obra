@@ -29,7 +29,11 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 set -gx VIRTUAL_ENV "/home/bertoldo/PycharmProjects/Construction/venv"
+=======
+set -gx VIRTUAL_ENV "/home/bertoldo/PycharmProjects/Obra/venv"
+>>>>>>> a9b7fe84676fe6853aefee70ab3828726d601c36
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
@@ -52,7 +56,11 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
         set -l old_status $status
 
         # Prompt override?
+<<<<<<< HEAD
         if test -n "(venv) "            
+=======
+        if test -n "(venv) "
+>>>>>>> a9b7fe84676fe6853aefee70ab3828726d601c36
             printf "%s%s" "(venv) " (set_color normal)
         else
             # ...Otherwise, prepend env

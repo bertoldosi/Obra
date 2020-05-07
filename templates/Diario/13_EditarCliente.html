@@ -1,0 +1,106 @@
+{% extends 'Diario/base.html' %}
+{% load static %}
+
+{% block titulo %} Painel {% endblock %}
+
+
+{% block conteudo %}
+
+      <div class="container-fluid">
+            <!-- abas -->
+            <div class="card mb-3">
+
+                  <div class="card-header" style="text-align: center">
+                    <STRONG>EDITANDO CLIENTE</STRONG>
+                  </div><br>
+
+                  <div class="modal-body">
+                    <form method="post">
+                    {% csrf_token %}
+                          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="empClienteRazao" class="col-form-label" >Razão Social:</label>
+                                <input name="empClienteRazao" type="text" class="form-control" id="empClienteRazao" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.empClienteRazao }}">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="empClienteCNPJ" class="col-form-label" >CNPJ:</label>
+                                <input name="empClienteCNPJ" type="text" class="form-control" id="empClienteCNPJ" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.empClienteCNPJ }}">
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="empClienteRespon" class="col-form-label" >Responsavel:</label>
+                                <input name="empClienteRespon" type="text" class="form-control" id="empClienteRespon" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.empClienteRespon }}">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="empClienteContato" class="col-form-label" >Contato:</label>
+                                <input name="empClienteContato" type="text" class="form-control" id="empClienteContato" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.empClienteContato }}">
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-8">
+                                <label for="empClienteEmail" class="col-form-label" >Email:</label>
+                                <input name="empClienteEmail" type="email" class="form-control" id="empClienteEmail" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.empClienteEmail }}">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="endCEP" class="col-form-label" >CEP:</label>
+                                <input name="endCEP" type="text" class="form-control" id="endCEP" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.endCEP }}">
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-10">
+                                <label for="endRua" class="col-form-label" >Rua:</label>
+                                <input name="endRua" type="text" class="form-control" id="endRua" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.endRua }}">
+                              </div>
+                              <div class="form-group col-md-2">
+                                <label for="endNum" class="col-form-label" >Número:</label>
+                                <input name="endNum" type="number" class="form-control" id="endNum" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.endNum }}">
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-10">
+                                <label for="endCidade" class="col-form-label" >Cidade:</label>
+                                <input name="endCidade" type="text" class="form-control" id="endCidade" onkeyup="this.value=this.value.toUpperCase();" value="{{ cliente.endCidade }}">
+                              </div>
+                              <div class="form-group col-md-2">
+                                  <label class="col-form-label" for="endEstado">Estado:</label>
+                                  <select name="endEstado" id="endEstado"  class="form-control">
+                                    <option selected>{{ cliente.endEstado }}</option>
+                                    <option>AC</option>
+                                    <option>AL</option>
+                                    <option>AL</option>
+                                    <option>AM</option>
+                                    <option>BA</option>
+                                    <option>CE</option>
+                                    <option>DF</option>
+                                    <option>ES</option>
+                                    <option>GO</option>
+                                    <option>MA</option>
+                                    <option>MT</option>
+                                    <option>MS</option>
+                                    <option>MG</option>
+                                    <option>PA</option>
+                                    <option>PB</option>
+                                    <option>PR</option>
+                                    <option>PE</option>
+                                    <option>PI</option>
+                                    <option>RJ</option>
+                                    <option>RN</option>
+                                    <option>RS</option>
+                                    <option>RO</option>
+                                    <option></option>
+                                    <option></option>
+                                  </select>
+                              </div>
+                          </div><br><br>
+                      <button type="submit" class="btn btn-primary">Gravar</button>
+                      <a href="{% url 'cadCliente' %}" class="btn btn-danger" role="button" aria-pressed="true">Cancelar</a>
+                    </form>
+                  </div>
+            </div>
+      </div>
+{% endblock %}

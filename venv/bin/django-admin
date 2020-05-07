@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/home/bertoldo/PycharmProjects/Construction/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
@@ -5,4 +6,15 @@ import sys
 from django.core.management import execute_from_command_line
 if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+=======
+#!/home/bertoldo/PycharmProjects/Obra/venv/bin/python
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from django.core.management import execute_from_command_line
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+>>>>>>> a9b7fe84676fe6853aefee70ab3828726d601c36
     sys.exit(execute_from_command_line())

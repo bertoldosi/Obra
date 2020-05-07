@@ -5,7 +5,11 @@ import sys
 
 
 def main():
+<<<<<<< HEAD
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Construction.settings')
+=======
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Obra.settings')
+>>>>>>> a9b7fe84676fe6853aefee70ab3828726d601c36
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
