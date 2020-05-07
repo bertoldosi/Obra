@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" contentaccess="">
+  <meta name="author" content="">
+
+  <title>SB Admin - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="static/access/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="static/access/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Register an Account</div>
+      <div class="card-body">
+        <form method="post"> {% csrf_token %}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-label-group">
+                  <input name="empreUserRazao" type="text" id="empreUserRazao" class="form-control" placeholder="empreUserRazao" required="required" autofocus="autofocus">
+                  <label for="empreUserRazao">empreUserRazao</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input name="empreUserCNPJ" type="text" id="empreUserCNPJ" class="form-control" placeholder="empreUserCNPJ" required="required">
+              <label for="empreUserCNPJ">empreUserCNPJ</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="empreUserRespon" type="text" id="empreUserRespon" class="form-control" placeholder="empreUserRespon" required="required">
+                  <label for="empreUserRespon">empreUserRespon</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="empreUserContato" type="text" id="empreUserContato" class="form-control" placeholder="empreUserContato" required="required">
+                  <label for="empreUserContato">empreUserContato</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="empreUserEmail" type="email" id="email" class="form-control" placeholder="empreUserEmail" required="required">
+                  <label for="email">empreUserEmail</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="endRua" type="text" id="endRua" class="form-control" placeholder="endRua" required="required">
+                  <label for="endRua">endRua</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="endNum" type="number" id="endNum" class="form-control" placeholder="endNum" required="required">
+                  <label for="endNum">endNum</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="endCEP" type="text" id="endCEP" class="form-control" placeholder="endCEP" required="required">
+                  <label for="endCEP">endCEP</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="endCidade" type="text" id="endCidade" class="form-control" placeholder="endCidade" required="required">
+                  <label for="endCidade">endCidade</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="endEstado" type="text" id="endEstado" class="form-control" placeholder="endEstado" required="required">
+                  <label for="endEstado">endEstado</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="password1" type="text" id="password1" class="form-control" placeholder="password1" required="required">
+                  <label for="password1">password1</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input name="password2" type="text" id="password2" class="form-control" placeholder="password2" required="required">
+                  <label for="password2">password2</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Registrar</button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="{% url 'login' %}">Logar</a>
+          <a class="d-block small" href="{% url 'recover_password' %}">Recuperar senha?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="static/access/js/jquery.min.js"></script>
+  <script src="static/access/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="static/access/js/jquery.easing.min.js"></script>
+
+</body>
+
+</html>

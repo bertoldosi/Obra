@@ -1,0 +1,9 @@
+<div>
+            {% for i in obra %}
+                <!--Nesta operação estou enviando o id da obra para ser vinculada no novo diario-->
+                <a href="{% url 'cadDiario' idObra=i.id %}">{{ i.obraNome }}</a><br><hr>
+            {% endfor %}
+        </div>
+
+
+
